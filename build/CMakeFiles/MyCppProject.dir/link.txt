@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/MyCppProject.dir/test.cpp.o CMakeFiles/MyCppProject.dir/linenoise/linenoise.c.o -o MyCppProject  -lcurl 

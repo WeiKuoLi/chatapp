@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/chatapp.dir/main.cpp.o CMakeFiles/chatapp.dir/linenoise/linenoise.c.o -o chatapp  -lcurl 

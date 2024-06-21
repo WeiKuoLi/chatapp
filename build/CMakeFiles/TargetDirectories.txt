@@ -1,3 +1,0 @@
-/home/wli22/Desktop/chatcpp/build/CMakeFiles/chatapp.dir
-/home/wli22/Desktop/chatcpp/build/CMakeFiles/edit_cache.dir
-/home/wli22/Desktop/chatcpp/build/CMakeFiles/rebuild_cache.dir
