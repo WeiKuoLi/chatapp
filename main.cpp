@@ -152,12 +152,15 @@ int main() {
 
     std::string str_input = "";
     std::string openai_endpoint = "https://api.openai.com/v1/chat/completions";
+    int chat_history_size = 5;
     //while cin is not empty  
     
+    std::cout << "*** start chatting with the assistant, type 'exit' to quit ***\n";
     while (true) {
-        std::cout << "USER: ";
         //std::string str_input;
+        std::cout << "\033[1;34m";
         std::getline(std::cin, str_input);  
+        std::cout<< "\033[0m";
         if(str_input == "exit"){
             break;
         }
@@ -165,13 +168,19 @@ int main() {
         sanitize(str_input);
         struct openai::message m = {"user", str_input};
         user_input.push_back(m);
-
+        
+        //use input remembers only last 5 messages
+        if(user_input.size() > chat_history_size){
+            user_input.erase(user_input.begin(), user_input.end() - chat_history_size);
+        }
         std::string completion = openai::openai_chat(user_input, api_key, openai_endpoint);
         if(completion != ""){
             //std::cout << "OPENAI: " << completion << std::endl;
             //output the completion in green text, "OPENAI" in red
             //std::cout << "\033[1; << "OPENAI: " << "\033[1;32m" << completion << "\033[0m" << std::endl;
-            std::cout << "\033[1;31m" << "OPENAI: " << "\033[1;32m" << completion << "\033[0m" << std::endl;
+            //std::cout << "\033[1;31m" << "OPENAI: " << "\033[1;32m" << completion << "\033[0m" << std::endl;
+            std::cout << completion << std::endl;
+            //std::cout << "\033[1;32m" << completion << "\033[0m" << std::endl;
             // replace " or ' or ''' in completion with escape character ex: \' or \" or \'''
                         // to prevent json parse error
             sanitize(completion);
