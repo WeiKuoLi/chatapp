@@ -1,8 +1,11 @@
 # chatapp
 ## install
 sudo apt install curl libcurl4-openssl-dev
+
 mkdir build
+
 cd build
+
 cmake ..;make
 
 ## setup
