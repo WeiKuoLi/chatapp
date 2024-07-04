@@ -141,6 +141,31 @@ void sanitize(std::string & completion){
         
     }
 };
+void custom_input(std::string& input_str){
+    char input_char;
+    char delimiter='@';
+    input_str = "";
+    std::cout << "\033[1;34m";
+    std::cin.get(input_char);
+    if (input_char == '\n'){
+        std::cout<< "\033[0m";
+        return;
+    }
+    
+    if (input_char == '@'){
+        delimiter='@';// complex mode
+        std::cout << "\033[1;32m";
+    }
+    else{
+        delimiter='\n'; //simple mode
+        input_str += input_char;
+    }
+    while (std::cin.get(input_char) && input_char != delimiter) {
+        input_str += input_char;
+    }
+    std::cout<< "\033[0m";
+    return;
+}
 int main() {
     const char* api_key = std::getenv("OPENAI_API_KEY");
     if (!api_key) {
@@ -155,12 +180,13 @@ int main() {
     int chat_history_size = 5;
     //while cin is not empty  
     
-    std::cout << "*** start chatting with the assistant, type 'exit' to quit ***\n";
+    std::cout << "*** start chatting with the assistant, ";
+    std::cout << "use '@' to sandwich input with \\n: @...@, ";
+    std::cout << "'exit' for quitting. ***" << std::endl;
+    
     while (true) {
         //std::string str_input;
-        std::cout << "\033[1;34m";
-        std::getline(std::cin, str_input);  
-        std::cout<< "\033[0m";
+        custom_input(str_input);  
         if(str_input == "exit"){
             break;
         }
